@@ -1,19 +1,51 @@
-function add(n1:number, n2:number, showresult:boolean, phrase:string)
+
+// Creating object and specifying types manually, sub-optimal
+// const person: {
+//     name:string;
+//     age:number
+//     role: [number,string]
+// } = {
+//     name:'Shashank',
+//     age:27,
+//     role : [2,'author']
+// };
+
+//Typescript infers the Object type, Optimal
+// const person = {
+//     name : 'Shashank',
+//     age : 27,
+//     hobbies : ['Sports','Cooking'],
+
+//     //Tuple, only 2 elements, first element as numeric and second as string
+//     role : [2,'author']
+// }
+
+//ENUM, can be customized ro have string values too
+enum Role {ADMIN, READ_ONLY,AUTHOR};
+const person = {
+    name : 'Shashank',
+    age : 27,
+    hobbies : ['Sports','Cooking'],
+    //Enums
+    role : Role.ADMIN
+}
+//Array of any types, we can use string and number
+//let favoriteActivity:any[];
+
+let favoriteActivity : string[];
+favoriteActivity = ['Sports'];
+
+console.log(person);
+
+//TypeScript inferes type of hobbies 
+for(const hobby of person.hobbies)
 {
-    const Result = n1 + n2;
-    if(showresult)
-    {
-        console.log(phrase + Result);
-    }
-    else
-    {
-        return n1 + n2;
-    }
+    console.log(hobby.toLocaleUpperCase());
 }
 
-const number1 = 5;
-const number2 = 2.8;
-const printResult = true;
-const phrase = 'Result is: ';
+//ENUM supported in TypeScript
 
-const result = add(number1,number2,printResult,phrase);
+if(person.role == Role.ADMIN)
+{
+    console.log('is Admin');
+}
